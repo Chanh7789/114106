@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>You are my only light</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      font-size: 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+      color: #ffffff;
+      background: linear-gradient(-45deg, #e4a9bb, #e3a4c6, #f2c7d8, #e4a9bb);
+      background-size: 400% 400%;
+      animation: gradientFlow 20s ease infinite;
+    }
+
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    #line, #ending, #restartBtn {
+      opacity: 0;
+      transition: opacity 1s ease;
+      padding: 0 40px;
+    }
+
+    #line.size1 { font-size: 48px; }
+    #line.size2 { font-size: 52px; }
+    #line.size3 { font-size: 56px; }
+
+    #ending {
+      font-size: 44px;
+      margin-top: 40px;
+    }
+
+    #restartBtn {
+      margin-top: 20px;
+      padding: 6px 16px;
+      font-size: 18px;
+      background-color: rgba(255, 255, 255, 0.6);
+      color: #b94f7b;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    #restartBtn:hover {
+      background-color: rgba(255, 255, 255, 0.75);
+    }
+
+    @media (max-width: 600px) {
+      body {
+        font-size: 30px;
+      }
+      #ending {
+        font-size: 30px;
+      }
+      #restartBtn {
+        font-size: 14px;
+        padding: 5px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="line"></div>
+  <div id="ending">Nếu em đang đọc dòng này... thì cảm ơn vì đã hiện diện trong cuộc đời tôi.</div>
+  <button id="restartBtn" onclick="restartPoem()">Muốn đọc lại không?</button>
+
+  <script>
+    const lines = [
+      "You are my only light.",
+      "Tôi thích ngọn gió chiều lướt qua cánh đồng sau hoàng hôn;",
+      "Tôi thích ngắm trăng sáng dần lên khi trời sẫm tối.",
+      "Tôi thích đêm yên tĩnh, một mình nâng ly rượu, hát vu vơ.",
+      "Tôi thích tiếng gà gáy đầu canh tư giữa màn đêm tĩnh lặng;",
+      "Tôi thích ánh sáng đầu ngày rọi qua tầng mây mỏng.",
+      "Tôi thích tiếng chim ríu rít ngoài khung cửa sổ sớm tinh mơ.",
+      "Tôi thích ánh nắng dịu dàng làm ấm quần áo ban mai.",
+      "Tôi thích một ấm trà thơm trong buổi trưa thanh vắng;",
+      "Tôi thích làn gió nhẹ nhàng lúc giữa trưa.",
+      "Tôi thích ánh sáng dịu dịu khi chiều buông.",
+      "Tôi thích những lúc nhớ về em;",
+      "Tôi thích những điều giản dị, bình thường.",
+      "Tôi thích em!",
+      "...Hạnh My.",
+      "Tôi nói rằng...",
+      "Tôi",
+      "Thích",
+      "Em !",
+      "Và đó là tất cả những điều tôi muốn nói...",
+      "...",
+      "...",
+      "Ehehe",
+      "Hơi sến nhỉ.",
+      "Vô tình thấy bài này trên douyin nên mới quyết định làm cái này.",
+      "Ờm...",
+      "Vừa ngồi viết cái này mà người tôi muốn gửi lại đang ngồi nói chuyện trong Discord.",
+      "Cảm giác hơi kỳ kỳ...(◔‿◔)",
+      "Mà thôi kệ... <(￣︶￣)>",
+      "Giờ thì...",
+      "Tôi Yêu Người !!!",
+      "Thật đấy này nghiêm túc.",
+      "Không biết nói sao nữa. Lúc đầu thì không có để ý lắm.",
+      "Nhưng từ khi lỡ thấy tấm ảnh em cười...",
+      "<sub>(Tấm thứ 2 trong cái story đừng tin đàn bà gì ấy...)</sub>",
+      "Ôi giồi ôi nụ cười đấy...",
+      "Lỡ mọe mấy nhịp tim...",
+      "....╰(▔∀▔)╯",
+      "Thế đấy...",
+      "Nên là...",
+      "Em có thể cho tôi cơ hội được không?",
+      "Cơ hội làm người yêu em.",
+      "Cơ hội để nhớ...Để thương...",
+      "Cơ hội quan tâm em.",
+      "Dù chỉ qua tin nhắn.",
+      "Dù chỉ là online Discord.",
+      "Chơi game cùng nhau.",
+      "Xem phim cùng nhau.",
+      "Được không?",
+      "Liệu tôi có thể nhận được câu trả lời không?",
+      "Lúc em đọc đến dòng này chắc tôi đang trên máy bay zìa VN rồi (. ❛ ᴗ ❛.)",
+      "(Đang vui nên làm liều. Được ăn cả, ngã thì mình x2)"
+    ];
+
+    const display = document.getElementById("line");
+    const ending = document.getElementById("ending");
+    const restartBtn = document.getElementById("restartBtn");
+
+    let index = 0;
+
+    function showNextLine() {
+      if (index >= lines.length) {
+        setTimeout(() => {
+          ending.style.opacity = 1;
+          setTimeout(() => {
+            restartBtn.style.opacity = 1;
+          }, 2000);
+        }, 1000);
+        return;
+      }
+
+      display.innerHTML = lines[index];
+      display.classList.remove("size1", "size2", "size3");
+
+      if (lines[index] === "Tôi") {
+        display.classList.add("size1");
+      } else if (lines[index] === "Thích") {
+        display.classList.add("size2");
+      } else if (lines[index] === "Em !") {
+        display.classList.add("size3");
+      }
+
+      display.style.opacity = 1;
+
+      const fastLines = ["Tôi", "Thích", "Em !"];
+      let slowIndexes = [22, 32, 47];  // Ehehe, ảnh em cười..., liệu tôi có thể...
+      let duration = fastLines.includes(lines[index]) ? 750 :
+                     (slowIndexes.includes(index) ? 5000 :
+                     (index >= lines.length - 6 ? 1000 : 3000));
+
+      setTimeout(() => {
+        display.style.opacity = 0;
+        index++;
+        setTimeout(showNextLine, 1000);
+      }, duration);
+    }
+
+    function restartPoem() {
+      index = 0;
+      display.innerHTML = "";
+      display.style.opacity = 0;
+      display.classList.remove("size1", "size2", "size3");
+      ending.style.opacity = 0;
+      restartBtn.style.opacity = 0;
+      setTimeout(showNextLine, 1000);
+    }
+
+    showNextLine();
+  </script>
+
+<audio autoplay loop>
+  <source src="audio/sundial.mp3" type="audio/mpeg">
+  Your browser does not support the audio element.
+</audio>
+<div id="catimg" style="margin-top:20px;"><img src="images/cat-look-light.jpg" alt="Cat" style="max-width:240px; width:90%; border-radius:12px;"></div>
+</body>
+
+</html>
