@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>You are my only light</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: Arial, sans-serif;
+      font-size: 44px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+      color: #ffffff;
+      background: linear-gradient(-45deg, #e4a9bb, #e3a4c6, #f2c7d8, #e4a9bb);
+      background-size: 400% 400%;
+      animation: gradientFlow 20s ease infinite;
+    }
+
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    #intro {
+      margin-bottom: 40px;
+      line-height: 1.4;
+      max-width: 90%;
+    }
+
+    #line, #ending, 
+    #fullPoemBtn {
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    
+    .poem-btn {
+      opacity: 0;
+      transition: opacity 1s ease;
+      padding: 6px 16px;
+      font-size: 18px;
+      background-color: rgba(255, 255, 255, 0.6);
+      color: #b94f7b;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .poem-btn:hover {
+      background-color: rgba(255, 255, 255, 0.75);
+    }
+
+    #restartBtn {
+    
+    
+      opacity: 0;
+      transition: opacity 1s ease;
+      padding: 0 40px;
+    }
+
+    #line.size1 { font-size: 48px; }
+    #line.size2 { font-size: 52px; }
+    #line.size3 { font-size: 56px; }
+
+    #ending {
+      font-size: 44px;
+      margin-top: 40px;
+    }
+
+    
+    #fullPoemBtn {
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    
+    .poem-btn {
+      opacity: 0;
+      transition: opacity 1s ease;
+      padding: 6px 16px;
+      font-size: 18px;
+      background-color: rgba(255, 255, 255, 0.6);
+      color: #b94f7b;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .poem-btn:hover {
+      background-color: rgba(255, 255, 255, 0.75);
+    }
+
+    #restartBtn {
+    
+    
+      margin-top: 20px;
+      padding: 6px 16px;
+      font-size: 18px;
+      background-color: rgba(255, 255, 255, 0.6);
+      color: #b94f7b;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    #restartBtn:hover {
+      background-color: rgba(255, 255, 255, 0.75);
+    }
+
+    
+    #startBtn {
+      padding: 12px 28px;
+      font-size: 22px;
+      background-color: transparent;
+      border: 2px solid white;
+      color: white;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    #startBtn:hover {
+      background-color: white;
+      color: #b94f7b;
+    }
+
+
+    @media (max-width: 600px) {
+      body {
+        font-size: 30px;
+      }
+      #ending {
+        font-size: 30px;
+      }
+      
+    #fullPoemBtn {
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    
+    .poem-btn {
+      opacity: 0;
+      transition: opacity 1s ease;
+      padding: 6px 16px;
+      font-size: 18px;
+      background-color: rgba(255, 255, 255, 0.6);
+      color: #b94f7b;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .poem-btn:hover {
+      background-color: rgba(255, 255, 255, 0.75);
+    }
+
+    #restartBtn {
+    
+    
+        font-size: 14px;
+        padding: 5px 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  
+  
+  <div id="intro">
+    <p>Chào Công Túa !!! o(>ω<)o</p>
+    <p>Khi Công Túa đọc được cái này,<br>chắc lúc đó SP đang trên máy bay rồi...</p>
+    <p>Cái này được làm khá lâu rồi.</p>
+    <p>Chỉ là một vài dòng vu vơ thôi.</p>
+    <p>Nhưng đến giờ mới dám gửi...</p>
+    <p>Nhấn nút đi nhé.</p>
+    <p>Hẹn gặp Công Túa bên trong (θ‿θ)</p>
+  </div>
+
+
+  <button id="startBtn" onclick="startPoem()">Gét go</button>
+  <div id="line"></div>
+  <div id="ending">Nếu em đang đọc dòng này... thì cảm ơn vì đã hiện diện trong cuộc đời tôi.</div>
+  
+  <div id="fullPoem" style="display:none; max-width: 90%; text-align: left; margin-top: 20px; font-size: 20px; line-height: 1.6; color: #fff; overflow-y: auto; max-height: 70vh;">
+<p>You are my only light.</p>
+<p>Tôi thích ngọn gió chiều lướt qua cánh đồng sau hoàng hôn;</p>
+<p>Tôi thích ngắm trăng sáng dần lên khi trời sẫm tối.</p>
+<p>Tôi thích đêm yên tĩnh, một mình nâng ly rượu, hát vu vơ.</p>
+<p>Tôi thích tiếng gà gáy đầu canh tư giữa màn đêm tĩnh lặng;</p>
+<p>Tôi thích ánh sáng đầu ngày rọi qua tầng mây mỏng.</p>
+<p>Tôi thích tiếng chim ríu rít ngoài khung cửa sổ sớm tinh mơ.</p>
+<p>Tôi thích ánh nắng dịu dàng làm ấm quần áo ban mai.</p>
+<p>Tôi thích một ấm trà thơm trong buổi trưa thanh vắng;</p>
+<p>Tôi thích làn gió nhẹ nhàng lúc giữa trưa.</p>
+<p>Tôi thích ánh sáng dịu dịu khi chiều buông.</p>
+<p>Tôi thích những lúc nhớ về em;</p>
+<p>Tôi thích những điều giản dị, bình thường.</p>
+<p>Tôi thích em!</p>
+<p>...Hạnh My.</p>
+<p>Tôi nói rằng...</p>
+<p>Tôi</p>
+<p>Thích</p>
+<p>Em !</p>
+<p>Và đó là tất cả những điều tôi muốn nói...</p>
+<p>...</p>
+<p>...</p>
+<p>Ehehe</p>
+<p>Hơi sến nhỉ.</p>
+<p>Vô tình thấy bài này trên douyin nên mới quyết định làm cái này.</p>
+<p>Ờm...</p>
+<p>Vừa ngồi viết cái này mà người tôi muốn gửi lại đang ngồi nói chuyện trong Discord.</p>
+<p>Cảm giác hơi kỳ kỳ...(◔‿◔)</p>
+<p>Mà thôi kệ... <(￣︶￣)></p>
+<p>Giờ thì...</p>
+<p>Tôi Yêu Người !!!</p>
+<p>Thật đấy này nghiêm túc.</p>
+<p>Không biết nói sao nữa. Lúc đầu thì không có để ý lắm.</p>
+<p>Nhưng từ khi lỡ thấy tấm ảnh em cười...</p>
+<p><sub>(Tấm thứ 2 trong cái story đừng tin đàn bà gì ấy...)</sub></p>
+<p>Ôi giồi ôi nụ cười đấy...</p>
+<p>Lỡ mọe mấy nhịp tim...</p>
+<p>....╰(▔∀▔)╯</p>
+<p>Thế đấy...</p>
+<p>Nên là...</p>
+<p>Em có thể cho tôi cơ hội được không?</p>
+<p>Cơ hội làm người yêu em.</p>
+<p>Cơ hội để nhớ...Để thương...</p>
+<p>Cơ hội quan tâm em.</p>
+<p>Dù chỉ qua tin nhắn.</p>
+<p>Dù chỉ là online Discord.</p>
+<p>Chơi game cùng nhau.</p>
+<p>Xem phim cùng nhau.</p>
+<p>Được không?</p>
+<p>Liệu tôi có thể nhận được câu trả lời không?</p>
+</div>
+  <div style="display: flex; justify-content: center; margin-top: 20px;">
+  <button id="fullPoemBtn" onclick="showFullPoem()" class="poem-btn">
+    Muốn đọc toàn bộ ?
+  </button>
+</div>
+  
+
+  <audio id="bgmusic" loop>
+    <source src="audio/sundial.mp3" type="audio/mpeg">
+  </audio>
+
+  
+  <script>
+    const lines = [
+      "You are my only light.",
+      "Tôi thích ngọn gió chiều lướt qua cánh đồng sau hoàng hôn;",
+      "Tôi thích ngắm trăng sáng dần lên khi trời sẫm tối.",
+      "Tôi thích đêm yên tĩnh, một mình nâng ly rượu, hát vu vơ.",
+      "Tôi thích tiếng gà gáy đầu canh tư giữa màn đêm tĩnh lặng;",
+      "Tôi thích ánh sáng đầu ngày rọi qua tầng mây mỏng.",
+      "Tôi thích tiếng chim ríu rít ngoài khung cửa sổ sớm tinh mơ.",
+      "Tôi thích ánh nắng dịu dàng làm ấm quần áo ban mai.",
+      "Tôi thích một ấm trà thơm trong buổi trưa thanh vắng;",
+      "Tôi thích làn gió nhẹ nhàng lúc giữa trưa.",
+      "Tôi thích ánh sáng dịu dịu khi chiều buông.",
+      "Tôi thích những lúc nhớ về em;",
+      "Tôi thích những điều giản dị, bình thường.",
+      "Tôi thích em!",
+      "...Hạnh My.",
+      "Tôi nói rằng...",
+      "Tôi",
+      "Thích",
+      "Em !",
+      "<img src='images/em-chinh-la-em.jpg' style='max-width:300px; width:90%; border-radius:12px;'>",
+      "Và đó là tất cả những điều tôi muốn nói...",
+      "...",
+      "...",
+      "Ehehe",
+      "Hơi sến nhỉ...",
+      "Vô tình thấy bài này trên douyin nên mới quyết định làm cái này.",
+      "....",
+      "Ờm...",
+      "Vừa ngồi viết cái này mà người mình muốn gửi lại đang ngồi nói chuyện trong discord...",
+      "Cảm giác hơi kỳ kỳ...(◔‿◔)",
+      "Mà thôi kệ... <(￣︶￣)>",
+      "Giờ thì...",
+      "Tôi Yêu Em !!!",
+      "⁄(⁄ ⁄•⁄-⁄•⁄ ⁄)⁄",
+      "Hmm... Hơi buồn cười nhỉ?",
+      "Tôi từng nói không cần nâng cấp bản thân năm nay.",
+      "Từng nói chưa muốn yêu ai cả.",
+      "Vậy mà giờ... lại nói yêu em?",
+      "Không hiểu sao nữa. Từ khi...",
+      "Từ khi thấy bức ảnh đó. Bức ảnh mà Em đang cười.",
+      "Nụ cười em thật đẹp (//∇//).",
+      "U mê...",
+      "Tim lỡ mọe mấy nhịp.",
+      "Từ lúc đấy tôi nhận ra mình có tình cảm với em.",
+      "Và cũng từ đấy con quỷ tình yêu nó đập cho tôi không trượt phát nào.",
+      "....╰(▔∀▔)╯",
+      "Thế đấy...",
+      "Nên là...",
+      "Em có thể cho tôi cơ hội được không?",
+      "Cơ hội làm người yêu em.",
+      "Cơ hội để nhớ... Để thương...",
+      "Cơ hội quan tâm em.",
+      "Dù chỉ qua tin nhắn.",
+      "Dù chỉ là online discord.",
+      "Chơi game cùng nhau.",
+      "Xem phim cùng nhau.",
+      "Được không?",
+      "<img src='images/cat-look-light.jpg' style='max-width:240px; width:90%; border-radius:12px;'>",
+      "Liệu tôi có thể nhận được câu trả lời không?",
+    ];
+
+    const display = document.getElementById("line");
+    const intro = document.getElementById("intro");
+    const startBtn = document.getElementById("startBtn");
+    const ending = document.getElementById("ending");
+    
+    let index = 0;
+
+    function startPoem() {
+      intro.style.display = "none";
+      startBtn.style.display = "none";
+      document.getElementById("bgmusic").play();
+      showNextLine();
+    }
+
+    function showNextLine() {
+      if (index >= lines.length) {
+        setTimeout(() => {
+          ending.style.opacity = 1;
+          setTimeout(() => {
+            
+            document.getElementById("fullPoemBtn").style.opacity = 1;
+          }, 2000);
+        }, 1000);
+        return;
+      }
+
+      let line = lines[index];
+      display.innerHTML = line;
+      display.classList.remove("size1", "size2", "size3");
+
+      if (line === "Tôi") {
+        display.classList.add("size1");
+      } else if (line === "Thích") {
+        display.classList.add("size2");
+      } else if (line === "Em !") {
+        display.classList.add("size3");
+      }
+
+      display.style.opacity = 1;
+
+      const fastLines = ["Tôi", "Thích", "Em !"];
+      let duration = fastLines.includes(line) ? 750 : 3000;
+
+      setTimeout(() => {
+        display.style.opacity = 0;
+        index++;
+        setTimeout(showNextLine, 1000);
+      }, duration);
+    }
+
+    function showFullPoem() {
+      document.getElementById("fullPoem").style.display = "block";
+      document.getElementById("fullPoemBtn").style.display = "none";
+      ending.innerText = "You are my only light";
+      ending.style.fontSize = "48px";
+    }
+
+      </script>
+</body>
+</html>
